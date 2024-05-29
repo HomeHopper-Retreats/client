@@ -14,7 +14,7 @@ function PlacesList() {
   }, []);
 
   function getAllPlaces() {
- 
+
     axios
       .get(`${API_URL}/api/places`)
       .then((response) => {
@@ -25,29 +25,29 @@ function PlacesList() {
       .catch((e) => console.log(e));
   }
 
-//   function searchAlbumOrArtist(query) {
-//     const needle = query.toLowerCase();
+  //   function searchAlbumOrArtist(query) {
+  //     const needle = query.toLowerCase();
 
-//     const searchResult = fullAlbumsList.filter((album) => {
-//       const artistName = album.artist.toLowerCase();
-//       const albumName = album.title.toLowerCase();
-//       if (artistName.includes(needle) || albumName.includes(needle)) {
-//         return true;
-//       }
-//     });
-//     setAlbums(searchResult);
-//   }
+  //     const searchResult = fullAlbumsList.filter((album) => {
+  //       const artistName = album.artist.toLowerCase();
+  //       const albumName = album.title.toLowerCase();
+  //       if (artistName.includes(needle) || albumName.includes(needle)) {
+  //         return true;
+  //       }
+  //     });
+  //     setAlbums(searchResult);
+  //   }
 
-//   function getGenre(query) {
-//     setAlbums(fullAlbumsList);
-//     if (query === "All") {
-//       return;
-//     }
-//     const searchResult = fullAlbumsList.filter(
-//       (album) => album.genre === query
-//     );
-//     setAlbums(searchResult);
-//   }
+  //   function getGenre(query) {
+  //     setAlbums(fullAlbumsList);
+  //     if (query === "All") {
+  //       return;
+  //     }
+  //     const searchResult = fullAlbumsList.filter(
+  //       (album) => album.genre === query
+  //     );
+  //     setAlbums(searchResult);
+  //   }
 
 
   return (
