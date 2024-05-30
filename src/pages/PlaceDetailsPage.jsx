@@ -28,7 +28,7 @@ function PlaceDetailsPage() {
     return (
         <>
             {place && (
-                <section className="grid gap-5 md:grid-cols-2 ml-50 mr-50 mb-10">
+                <section className="text-zinc-800 grid gap-5 md:grid-cols-2 ml-50 mr-50 mb-10">
                     <div className="w-full md:w-auto">
 
                         <div className="hover:bg-white p-4 rounded-lg shadow-lg bg-slate-100 drop-shadow-xl">

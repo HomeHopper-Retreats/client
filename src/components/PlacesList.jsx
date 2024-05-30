@@ -67,9 +67,9 @@ function PlacesList() {
             <img src={place.image} alt={place.name} className="w-full h-full object-cover" />
           </div>
           <div className="text-center mt-2">
-            <h1>{place.name}</h1>
+{/*             <h1>{place.name}</h1>
             <hr />
-            {place.description}
+            {place.description} */}
           </div>
         </div>
       </Link>
