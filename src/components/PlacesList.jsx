@@ -58,22 +58,24 @@ function PlacesList() {
         getGenre={getGenre}
       /> */}
 
-      <section className="grid gap-5 md:grid-cols-3 ml-5 mr-5 mb-10">
-        {places?.map((place) => (
-          <div key={place._id} className="w-full md:w-auto">
-            <Link to={`/places/${place._id}`}>
-              <div className="hover:bg-white p-4 rounded-lg shadow-lg bg-slate-100 drop-shadow-xl">
-                <img src={place.image} alt={place.name} />
-                <div className="text-center mt-2">
-                  <h1>{place.name}</h1>
-                  <hr />
-                  {place.description}
-                </div>
-              </div>
-            </Link>
+<section className="grid gap-5 md:grid-cols-3 ml-10 mr-10 mb-10">
+  {places?.map((place) => (
+    <div key={place._id} className="w-full md:w-auto max-h-[400px]">
+      <Link to={`/places/${place._id}`}>
+        <div className="hover:bg-white p-4 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
+          <div className="relative h-[200px] md:h-[300px] max-h-[400px] overflow-hidden rounded-3xl">
+            <img src={place.image} alt={place.name} className="w-full h-full object-cover" />
           </div>
-        ))}
-      </section>
+          <div className="text-center mt-2">
+{/*             <h1>{place.name}</h1>
+            <hr />
+            {place.description} */}
+          </div>
+        </div>
+      </Link>
+    </div>
+  ))}
+</section>
     </>
   );
 }

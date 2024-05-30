@@ -5,12 +5,14 @@ import SignupPage from './pages/SignupPage'
 import HomePage from './pages/HomePage'
 import PlaceDetailsPage from './pages/PlaceDetailsPage'
 import AdminPage from './pages/AdminPage'
+import Navbar from './components/Navbar'
 
 
 function App() {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
