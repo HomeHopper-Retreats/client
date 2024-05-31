@@ -22,6 +22,7 @@ function PlaceDetailsPage() {
   const [date, setDate] = useState(new Date());
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -40,6 +41,11 @@ function PlaceDetailsPage() {
   };
 
   const submitReservation = (date) => {
+    if(!isLoggedIn) {
+      onOpen(); // Open the modal window
+      return;
+    }
+
     const dates = [date[0], date[1]];
     const requestBody = {
       name: place.name,
@@ -144,20 +150,42 @@ function PlaceDetailsPage() {
           <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Thank you for your reservation!</ModalHeader>
+              <ModalHeader>
+                {isLoggedIn
+                  ? "Thank you for your reservation!"
+                  : "Please login to make a reservation"}
+              </ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                <div className="font-bold mb-3">{place.name}</div>
-                <div>From: {date.length == 2 ? date[0].toDateString() : ""}</div>
-                <div className="mb-3">To: {date.length == 2 ? date[1].toDateString() : ""}</div>
-                <div className="mb-3">We will reply to you shortly with your booking confirmation.</div>
+                {isLoggedIn ? (
+                  <>
+                    <div className="font-bold mb-3">{place.name}</div>
+                    <div>
+                      From: {date.length === 2 ? date[0].toDateString() : ""}
+                    </div>
+                    <div className="mb-3">
+                      To: {date.length === 2 ? date[1].toDateString() : ""}
+                    </div>
+                    <div className="mb-3">
+                      We will reply to you shortly with your booking
+                      confirmation.
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
               </ModalBody>
-
-              {/*           <ModalFooter>
-    <Button colorScheme="blue" mr={3} onClick={onClose}>
-      Close
-    </Button>
-  </ModalFooter> */}
+              <ModalFooter>
+                {!isLoggedIn && (
+                  <>
+                    <Link to={`/login`}>
+                      <Button colorScheme="blue" mr={3}>
+                        Proceed to Login
+                      </Button>
+                    </Link>
+                  </>
+                )}
+              </ModalFooter>
             </ModalContent>
           </Modal>
         </div>

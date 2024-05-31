@@ -13,6 +13,8 @@ function LoginPage(props) {
   const { storeToken, authenticateUser } = useContext(AuthContext);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
+  const { logOutUser } = useContext(AuthContext);
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, password };
@@ -31,6 +33,12 @@ function LoginPage(props) {
         setErrorMessage(errorDescription);
       });
   };
+
+  function logout() {
+    console.log("logged out");
+    logOutUser();
+  }
+
   return (
     <div className="LoginPage">
       <h1>Login</h1>
@@ -49,6 +57,7 @@ function LoginPage(props) {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <p>Don't have an account yet?</p>
       <Link to={"/signup"}> Sign Up</Link>
+      <button onClick={() => logout()}>Logout</button>
     </div>
   );
 }
