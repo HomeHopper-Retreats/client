@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -15,13 +15,15 @@ import {
   Button,
 } from "@chakra-ui/react";
 import GoogleMap from "../components/GoogleMap";
+import { AuthContext } from "../context/auth.context";
 
 function PlaceDetailsPage() {
   const [place, setPlace] = useState(null);
   const { placeId } = useParams();
   const [date, setDate] = useState(new Date());
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const { user } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -40,40 +42,30 @@ function PlaceDetailsPage() {
   };
 
   const submitReservation = (date) => {
+    if(!isLoggedIn) {
+      onOpen(); // Open the modal window
+      return;
+    }
+
     const dates = [date[0], date[1]];
     const requestBody = {
       name: place.name,
       date: dates,
       description: "can be removed?",
       place: placeId,
-      user: "6657293dbbbb6f7ef765b721", // TODO: make dynamic
+      user: user._id,
     };
     axios
       .post(`${API_URL}/api/reservations`, requestBody)
       .then((response) => {
         console.log(response.data);
-        onOpen(); // Open the modal
+        onOpen(); // Open the modal window
       })
       .catch((e) => console.log("error" + e));
   };
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Thank you for your reservation!</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody></ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-
       {place && (
         <div>
           <div className="mb-10">
@@ -115,7 +107,7 @@ function PlaceDetailsPage() {
                     <GoogleMap address={place.address}/>
                   </div>
                 </div>
-                <h1 className="text-gray-50">Reservation</h1>
+                <h1 className="text-slate-900">Reservation</h1>
                 <div className="flex items-center justify-center m-5">
                   <Calendar
                     onChange={setDate}
@@ -156,6 +148,48 @@ function PlaceDetailsPage() {
               <button>Back</button>
             </Link>
           </div>
+
+          <Modal isOpen={isOpen} onClose={onClose} isCentered>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                {isLoggedIn
+                  ? "Thank you for your reservation!"
+                  : "Please login to make a reservation"}
+              </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                {isLoggedIn ? (
+                  <>
+                    <div className="font-bold mb-3">{place.name}</div>
+                    <div>
+                      From: {date.length === 2 ? date[0].toDateString() : ""}
+                    </div>
+                    <div className="mb-3">
+                      To: {date.length === 2 ? date[1].toDateString() : ""}
+                    </div>
+                    <div className="mb-3">
+                      We will reply to you shortly with your booking
+                      confirmation.
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </ModalBody>
+              <ModalFooter>
+                {!isLoggedIn && (
+                  <>
+                    <Link to={`/login`}>
+                      <Button colorScheme="blue" mr={3}>
+                        Proceed to Login
+                      </Button>
+                    </Link>
+                  </>
+                )}
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </div>
       )}
     </>
