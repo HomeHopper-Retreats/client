@@ -148,8 +148,8 @@ function PlaceDetailsPage() {
               <ModalCloseButton />
               <ModalBody>
                 <div className="font-bold mb-3">{place.name}</div>
-                <div>From: {date[0].toDateString()}</div>
-                <div className="mb-3">To: {date[1].toDateString()}</div>
+                <div>From: {date.length == 2 ? date[0].toDateString() : ""}</div>
+                <div className="mb-3">To: {date.length == 2 ? date[1].toDateString() : ""}</div>
                 <div className="mb-3">We will reply to you shortly with your booking confirmation.</div>
               </ModalBody>
 
