@@ -14,6 +14,7 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
+import GoogleMap from "../components/GoogleMap";
 
 function PlaceDetailsPage() {
   const [place, setPlace] = useState(null);
@@ -111,6 +112,7 @@ function PlaceDetailsPage() {
                     )}
                     {place.address}
                     {place.location.coordinates}
+                    <GoogleMap address={place.address}/>
                   </div>
                 </div>
                 <h1 className="text-gray-50">Reservation</h1>

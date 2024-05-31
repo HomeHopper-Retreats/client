@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddPlace from "../components/AddPlace";
+import ReservationListAdmin from "../components/ReservationListAdmin";
 
 
 function AdminPage() {
@@ -241,6 +242,11 @@ function AdminPage() {
                     </div>
 
                 ))}
+            </section>
+            <br/>
+            <section>
+                <h1>Manage Existing Reservations</h1>
+                <ReservationListAdmin />
             </section>
         </>
     );
