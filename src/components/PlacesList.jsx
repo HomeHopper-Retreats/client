@@ -22,39 +22,9 @@ function PlacesList() {
       })
       .catch((e) => console.log(e));
   }
-
-  //   function searchAlbumOrArtist(query) {
-  //     const needle = query.toLowerCase();
-
-  //     const searchResult = fullAlbumsList.filter((album) => {
-  //       const artistName = album.artist.toLowerCase();
-  //       const albumName = album.title.toLowerCase();
-  //       if (artistName.includes(needle) || albumName.includes(needle)) {
-  //         return true;
-  //       }
-  //     });
-  //     setAlbums(searchResult);
-  //   }
-
-  //   function getGenre(query) {
-  //     setAlbums(fullAlbumsList);
-  //     if (query === "All") {
-  //       return;
-  //     }
-  //     const searchResult = fullAlbumsList.filter(
-  //       (album) => album.genre === query
-  //     );
-  //     setAlbums(searchResult);
-  //   }
-
+  
   return (
     <>
-      {/* <Search
-        searchAlbumOrArtist={searchAlbumOrArtist}
-        getAllAlbums={getAllPlaces}
-        getGenre={getGenre}
-      /> */}
-
       <section className="grid gap-8 md:grid-cols-3 ml-10 mr-10 mb-10">
         {places?.map((place) => (
           <div key={place._id} className="w-full md:w-auto max-h-[400px]">

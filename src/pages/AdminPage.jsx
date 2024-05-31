@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AddPlace from "../components/AddPlace";
 
 
 function AdminPage() {
 
     const [places, setPlaces] = useState(null);
     const [name, setName] = useState("");
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState([]);
     const [address, setAddress] = useState("");
     const [pets, setPets] = useState(false);
     const [handicap, setHandicap] = useState(false);
@@ -47,8 +48,15 @@ function AdminPage() {
             .delete(`${API_URL}/api/places/${placeId}`)
             .then(response => {
                 console.log(`Place with id ${placeId} deleted successfully`);
+                getAllPlaces();
             })
             .catch((err) => console.log(err));
+    };
+
+    const handleImageChange = (e, index) => {
+        const newImages = [...image]; // Create a copy of the current images array
+        newImages[index] = e.target.value; // Update the value at the specified index
+        setImage(newImages); // Update the state with the new images array
     };
 
     //To update state for editingId for form dropdown
@@ -63,17 +71,19 @@ function AdminPage() {
 
         console.log("placeID" + placeId)
 
-        
-        const requestBody = { 
-            name: name, 
-            image: image, 
-            description: description, 
+
+        const requestBody = {
+            name: name,
+            image: image,
+            description: description,
             petsAllowed: pets,
-            handicapAccessible: handicap, 
-            isLuxurious: luxury, 
-            kitchenAvailable: kitchen, 
-            poolAvailable: pool, 
-            address: address}
+            handicapAccessible: handicap,
+            elevatorAvailable: elevator,
+            isLuxurious: luxury,
+            kitchenAvailable: kitchen,
+            poolAvailable: pool,
+            address: address
+        }
 
         console.log("pets" + (typeof pets))
 
@@ -93,109 +103,123 @@ function AdminPage() {
 
     return (
         <>
-
-            <section className="grid gap-5 md:grid-cols-3 ml-5 mr-5 mb-10">
+            <section className="ml-5 mr-5 mb-10">
+                <AddPlace />
+            </section>
+            <h1 className="pb-5">Manage Existing Places</h1>
+            <section className="grid gap-8 md:grid-cols-3 ml-10 mr-10 mb-10">
                 {places?.map((place) => (
-                    <div key={place._id} className="w-full md:w-auto">
+                    <div key={place._id} className="relative w-full md:w-auto max-h-[400px] mb-7">
                         <Link to={`/places/${place._id}`}>
-                            <div className="hover:bg-white p-4 rounded-lg shadow-lg bg-slate-100 drop-shadow-xl">
-                                <img src={place.image} alt={place.name} />
-                                <div className="text-center mt-2">
-                                    <h1>{place.name}</h1>
-                                    <hr />
-                                    {place.description}
+                            <div className="hover:bg-white p-4 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
+                                <div className="h-[200px] md:h-[300px] max-h-[400px] overflow-hidden rounded-3xl">
+                                    <img
+                                        src={place.image[0]}
+                                        alt={place.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="text-gray-950 text-center mt-2">
+                                    {<div>{place.name}</div>}
                                 </div>
                             </div>
                         </Link>
                         <div>
+                            <div className="">
                             <button onClick={() => deletePlace(place._id)}>Delete</button>
                             <button onClick={() => handleUpdate(place._id)}>{editingId === place._id ? 'Cancel' : 'Update'}</button>
+                            </div>
                             {editingId === place._id && (
-                                <div className="position: absolute; text-black bg-white rounded-lg border p-4 mt-2 top-10">
+                                <div className="position: absolute z-50 text-black bg-white rounded-lg border p-4 mt-2 top-10">
                                     <form className="updateForm" onSubmit={handleSaveSubmit}>
                                         <label>Name:</label>
                                         <input
                                             type="text"
-                                            value={name}
+                                            value={place.name}
                                             onChange={(e) => setName(e.target.value)}
                                             className="border rounded p-2 mb-2"
                                         />
-                                        <br />
-                                        <label>Image:</label>
-                                        <input
-                                            type="text"
-                                            value={image}
-                                            onChange={(e) => setImage(e.target.value)}
-                                            className="border rounded p-2 mb-2"
-                                        />
+
                                         <br />
                                         <label>Address:</label>
                                         <input
                                             type="text"
-                                            value={address}
+                                            value={place.address}
                                             onChange={(e) => setAddress(e.target.value)}
                                             className="border rounded p-2 mb-2"
                                         />
                                         <br />
                                         <label>Pets Allowed?</label>
                                         <select
-                                            value={pets}
+                                            value={place.pets}
                                             onChange={(e) => setPets(e.target.value)}
                                             className="border rounded text-black p-2 mb-2">
-                                        
+
                                             <option value="true">Yes</option>
                                             <option value="false">No</option>
                                         </select>
                                         <br />
                                         <label>Handicap Accessible?</label>
                                         <select
-                                            value={handicap}
+                                            value={place.handicap}
                                             onChange={(e) => setHandicap(e.target.value)}
                                             className="border rounded text-black p-2 mb-2">
-                                            
+
                                             <option value="true">Yes</option>
                                             <option value="false">No</option>
                                         </select>
                                         <br />
                                         <label>Kitchen?</label>
                                         <select
-                                            value={kitchen}
+                                            value={place.kitchen}
                                             onChange={(e) => setKitchen(e.target.value)}
                                             className="border rounded text-black p-2 mb-2">
-                                            
+
                                             <option value="true">Yes</option>
                                             <option value="false">No</option>
                                         </select>
                                         <br />
                                         <label>Elevator?</label>
                                         <select
-                                            value={elevator}
+                                            value={place.elevator}
                                             onChange={(e) => setElevator(e.target.value)}
                                             className="border rounded text-black p-2 mb-2">
-                                            
+
                                             <option value="true">Yes</option>
                                             <option value="false">No</option>
                                         </select>
                                         <br />
                                         <label>Pool?</label>
                                         <select
-                                            value={pool}
+                                            value={place.pool}
                                             onChange={(e) => setPool(e.target.value)}
                                             className="border rounded text-black p-2 mb-2">
-                                            
+
                                             <option value="true">Yes</option>
                                             <option value="false">No</option>
                                         </select>
                                         <br />
                                         <label>Luxury?</label>
                                         <select
-                                            value={luxury}
+                                            value={place.luxury}
                                             onChange={(e) => setLuxury(e.target.value)}
                                             className="border rounded text-black p-2 mb-2">
-                                            
+
                                             <option value="true">Yes</option>
                                             <option value="false">No</option>
                                         </select>
+                                        <br />
+                                        {Array.from({ length: 4 }).map((_, index) => (
+                                            <div key={index}>
+                                                <label>{`Image ${index + 1}:`}</label>
+                                                <input
+                                                    type="text"
+                                                    value={image[index] || ""}
+                                                    onChange={(e) => handleImageChange(e, index)}
+                                                    className="border rounded p-2 mb-2"
+                                                />
+                                            </div>
+                                        ))}
                                         <br />
                                         <label>Description</label>
                                         <br />
@@ -203,8 +227,8 @@ function AdminPage() {
                                             value={description}
                                             onChange={(e) => setDescription(e.target.value)}
                                             className="border rounded p-2 mb-2"
-                                            rows={2} 
-                                            cols={25} 
+                                            rows={2}
+                                            cols={25}
                                         />
                                         <br />
                                         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
