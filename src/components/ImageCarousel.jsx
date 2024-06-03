@@ -25,8 +25,9 @@ function ImageCarousel(props) {
         showThumbs={isOverview ? false : true}
         infiniteLoop={true}
         showArrows={isOverview ? false : true}
-        stopOnHover={isOverview ? false : true} // Turn off stopOnHover since we are controlling it manually
+        stopOnHover={isOverview ? false : true}
         showStatus={false}
+        interval={isOverview ? 2000 : 3000}
       >
         {props.images.map((image, index) => (
           <div key={index} className={isOverview ? "carousel-image-overview" : "carousel-image-large"}>
