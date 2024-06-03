@@ -102,8 +102,10 @@ function PlaceDetailsPage() {
                     ) : (
                       <div>STANDARD</div>
                     )}
-                    {place.address}
-                    {place.location.coordinates}
+                    <div>{place.address}</div>
+                    <div>${place.price}</div>
+                    
+                    
                     <GoogleMap address={place.address}/>
                   </div>
                 </div>
