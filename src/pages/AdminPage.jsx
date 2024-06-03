@@ -11,6 +11,7 @@ function AdminPage() {
     const [name, setName] = useState("");
     const [image, setImage] = useState([]);
     const [address, setAddress] = useState("");
+    const [price, setPrice] = useState("");
     const [pets, setPets] = useState(false);
     const [handicap, setHandicap] = useState(false);
     const [elevator, setElevator] = useState(false);
@@ -83,7 +84,8 @@ function AdminPage() {
             isLuxurious: luxury,
             kitchenAvailable: kitchen,
             poolAvailable: pool,
-            address: address
+            address: address,
+            price: price
         }
 
         console.log("pets" + (typeof pets))
@@ -113,7 +115,7 @@ function AdminPage() {
                     <div key={place._id} className="relative w-full md:w-auto max-h-[400px] mb-7">
                         <Link to={`/places/${place._id}`}>
                             <div className="hover:bg-white p-4 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
-                                <div className="h-[200px] md:h-[300px] max-h-[400px] overflow-hidden rounded-3xl">
+                                <div className="h-[100px] md:h-[150px] max-h-[400px] overflow-hidden rounded-3xl">
                                     <img
                                         src={place.image[0]}
                                         alt={place.name}
@@ -127,8 +129,8 @@ function AdminPage() {
                         </Link>
                         <div>
                             <div className="">
-                            <button onClick={() => deletePlace(place._id)}>Delete</button>
-                            <button onClick={() => handleUpdate(place._id)}>{editingId === place._id ? 'Cancel' : 'Update'}</button>
+                                <button onClick={() => deletePlace(place._id)}>Delete</button>
+                                <button onClick={() => handleUpdate(place._id)}>{editingId === place._id ? 'Cancel' : 'Update'}</button>
                             </div>
                             {editingId === place._id && (
                                 <div className="position: absolute z-50 text-black bg-white rounded-lg border p-4 mt-2 top-10">
@@ -148,6 +150,15 @@ function AdminPage() {
                                             value={place.address}
                                             onChange={(e) => setAddress(e.target.value)}
                                             className="border rounded p-2 mb-2"
+                                        />
+                                        <br />
+                                        <label>Price Per Night:</label>
+                                        <input
+                                            type="text"
+                                            placeholder="$"
+                                            value={place.price}
+                                            onChange={(e) => setPrice(e.target.value)}
+                                            className="border rounded p-2 mb-2 text-black"
                                         />
                                         <br />
                                         <label>Pets Allowed?</label>
@@ -243,7 +254,7 @@ function AdminPage() {
 
                 ))}
             </section>
-            <br/>
+            <br />
             <section>
                 <h1>Manage Existing Reservations</h1>
                 <ReservationListAdmin />

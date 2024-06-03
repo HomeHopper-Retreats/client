@@ -8,6 +8,7 @@ function AddPlace() {
   const [name, setName] = useState("");
   const [image, setImage] = useState([]);
   const [address, setAddress] = useState("");
+  const [price, setPrice] = useState("");
   const [pets, setPets] = useState(false);
   const [handicap, setHandicap] = useState(false);
   const [elevator, setElevator] = useState(false);
@@ -47,7 +48,8 @@ function AddPlace() {
       isLuxurious: luxury,
       kitchenAvailable: kitchen,
       poolAvailable: pool,
-      address: address
+      address: address,
+      price: price
     }
     axios
       .post(`${API_URL}/api/places`, requestBody)
@@ -66,15 +68,17 @@ function AddPlace() {
 
   return (
     <>
-      <section className="grid gap-5 md:grid-row-3 ml-5 mr-5 mb-10">
+      <section className="grid gap-5 ml-10 mr-10 mb-10">
         <h1>Add New Place</h1>
         <button className="bg-green-500" onClick={() => handleUpdate()}>{editingId ? 'Cancel' : 'Add Place'}</button>
+        <div>
         {editingId &&(
         <form className="updateForm" onSubmit={handleSaveSubmit}>
           <label>Name:</label>
           <input
             type="text"
             value={name}
+            placeholder="Name"
             onChange={(e) => setName(e.target.value)}
             className="border rounded p-2 mb-2 text-black"
           />
@@ -84,7 +88,17 @@ function AddPlace() {
           <input
             type="text"
             value={address}
+            placeholder="Street, City, State, ZIP"
             onChange={(e) => setAddress(e.target.value)}
+            className="border rounded p-2 mb-2 text-black"
+          />
+          <br />
+          <label>Price Per Night:</label>
+          <input
+            type="text"
+            placeholder="$"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             className="border rounded p-2 mb-2 text-black"
           />
           <br />
@@ -154,6 +168,7 @@ function AddPlace() {
               <input
                 type="text"
                 value={image[index] || ""}
+                placeholder="Image URL address"
                 onChange={(e) => handleImageChange(e, index)}
                 className="border rounded p-2 mb-2 text-black"
               />
@@ -165,16 +180,20 @@ function AddPlace() {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            placeholder="Describe the property and available amenities"
             className="border rounded p-2 mb-2 text-black"
             rows={2}
             cols={25}
           />
+          
           <br />
           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
             Save
           </button>
         </form>
         )}
+
+</div>
             </section >
         </>
     );
