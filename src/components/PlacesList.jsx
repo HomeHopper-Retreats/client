@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ImageCarousel from "./ImageCarousel";
 
 function PlacesList() {
   const [places, setPlaces] = useState(null);
@@ -18,11 +19,11 @@ function PlacesList() {
       .then((response) => {
         const placesFromApi = response.data; //revert the order of the albums once a new one created appears as the first.
         setPlaces(placesFromApi);
-        setFullPlacesList(albumsFromApi); 
+        setFullPlacesList(albumsFromApi);
       })
       .catch((e) => console.log(e));
   }
-/*
+  /*
   function getCategory(query) {
     setAlbums(fullPlacesList);
     if (query === "All") {
@@ -34,7 +35,7 @@ function PlacesList() {
     setPlaces(searchResult);
   }
   */
-  
+
   return (
     <>
       <section className="grid gap-8 md:grid-cols-3 ml-10 mr-10 mb-10">
@@ -43,9 +44,9 @@ function PlacesList() {
             <Link to={`/places/${place._id}`}>
               <div className="hover:bg-white p-4 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
                 <div className="relative h-[200px] md:h-[300px] max-h-[400px] overflow-hidden rounded-3xl">
-                  <img
-                    src={place.image[0]}
-                    alt={place.name}
+                  <ImageCarousel
+                    overview={true}
+                    images={place.image}
                     className="w-full h-full object-cover"
                   />
                 </div>
