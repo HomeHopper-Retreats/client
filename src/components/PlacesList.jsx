@@ -50,6 +50,7 @@ function PlacesList() {
                 </div>
                 <div className="text-gray-950 text-center mt-2">
                   {<div>{place.name}</div>}
+                  {<div className="font-bold">${place.price} / Night</div>}
                 </div>
               </div>
             </Link>

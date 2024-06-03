@@ -17,6 +17,10 @@ import {
 import GoogleMap from "../components/GoogleMap";
 import { AuthContext } from "../context/auth.context";
 import ImageCarousel from "../components/ImageCarousel";
+import { MdOutlinePets, MdElevator, MdPool} from "react-icons/md";
+import { BiHandicap } from "react-icons/bi"
+import { IoDiamondOutline } from "react-icons/io5";
+import { TbToolsKitchen2 } from "react-icons/tb";
 
 function PlaceDetailsPage() {
   const [place, setPlace] = useState(null);
@@ -82,28 +86,28 @@ function PlaceDetailsPage() {
                     <hr />
                     {place.description}
                     {place.petsAllowed ? (
-                      <div>DOGS ALLOWED</div>
+                      <div className="flex items-center"> <MdOutlinePets /> <h2 className="ml-2"> DOGS ALLOWED </h2> </div>
                     ) : (
                       <div>NO DOGS ALLOWED</div>
                     )}
                     {place.handicapAccessible ? (
-                      <div>ACCESSIBLE</div>
+                      <div className="flex items-center"> <BiHandicap /> <h2 className="ml-2"> Accessible </h2> </div>
                     ) : (
                       <div>NOT ACCESSIBLE</div>
                     )}
                     {place.kitchenAvailable ? (
-                      <div>KITCHEN</div>
+                      <div className="flex items-center"> <TbToolsKitchen2 /> <h2 className="ml-2"> Kitchen </h2> </div>
                     ) : (
                       <div>NO KITCHEN</div>
                     )}
                     {place.elevatorAvailable ? (
-                      <div>ELEVATOR</div>
+                      <div className="flex items-center"> <MdElevator /> <h2 className="ml-2"> Elevator </h2> </div>
                     ) : (
                       <div>NO ELEVATOR</div>
                     )}
-                    {place.poolAvailable ? <div>POOL</div> : <div>NO POOL</div>}
+                    {place.poolAvailable ? <div className="flex items-center"> <MdPool /> <h2 className="ml-2"> Pool </h2> </div> : <div>NO POOL</div>}
                     {place.isLuxurious ? (
-                      <div>LUXURIOUS</div>
+                      <div className="flex items-center"> <IoDiamondOutline /> <h2 className="ml-2"> Luxury </h2> </div>
                     ) : (
                       <div>STANDARD</div>
                     )}

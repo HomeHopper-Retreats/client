@@ -49,7 +49,7 @@ const CategoryFilter = ({ setPlaces, fullPlacesList }) => {
         >   
         {category === "All" &&  <div className="flex items-center"> <h2 className="ml-2"> All </h2> </div>} 
         {category === "petsAllowed" &&  <div className="flex items-center"> <MdOutlinePets /> <h2 className="ml-2"> Pets </h2> </div>}
-        {category === "handicapAccessible" &&  <div className="flex items-center"> <BiHandicap /> <h2 className="ml-2"> Handicap Accessible </h2> </div>} 
+        {category === "handicapAccessible" &&  <div className="flex items-center"> <BiHandicap /> <h2 className="ml-2"> Accessible </h2> </div>} 
         {category === "kitchenAvailable" &&  <div className="flex items-center"> <TbToolsKitchen2 /> <h2 className="ml-2"> Kitchen </h2> </div>} 
         {category === "elevatorAvailable" &&  <div className="flex items-center"> <MdElevator /> <h2 className="ml-2"> Elevator </h2> </div>} 
         {category === "poolAvailable" &&  <div className="flex items-center"> <MdPool /> <h2 className="ml-2"> Pool </h2> </div>} 
