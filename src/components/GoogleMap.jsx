@@ -9,8 +9,8 @@ const GoogleMap = ({address}) => {
         <iframe
           title="google map"
           src={`https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${encodeURIComponent(address)}`}
-          width="100%"
-          height="500"
+          width="50%"
+          height="400"
           style={{ border: 0 }}
           allowfullscreen=""
           loading="lazy"
