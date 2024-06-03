@@ -25,6 +25,7 @@ function PlaceDetailsPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
+  const [guests, setGuests] = useState(1);
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -43,7 +44,8 @@ function PlaceDetailsPage() {
   };
 
   const submitReservation = (date) => {
-    if(!isLoggedIn) {
+    if (!isLoggedIn) {
+      console.log("User not logged in, opening login prompt");
       onOpen(); // Open the modal window
       return;
     }
@@ -52,14 +54,16 @@ function PlaceDetailsPage() {
     const requestBody = {
       name: place.name,
       date: dates,
-      description: "can be removed?",
+      guests: guests,
       place: placeId,
       user: user._id,
     };
+    console.log(typeof guests);
+    console.log(requestBody);
     axios
       .post(`${API_URL}/api/reservations`, requestBody)
       .then((response) => {
-        console.log(response.data);
+        
         onOpen(); // Open the modal window
       })
       .catch((e) => console.log("error" + e));
@@ -106,14 +110,14 @@ function PlaceDetailsPage() {
                     <div>{place.address}</div>
                     <div>${place.price}</div>
                     <div>
-                   <ImageCarousel
-                    overview={false}
-                    images={place.image}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                    
-                    <GoogleMap address={place.address}/>
+                      <ImageCarousel
+                        overview={false}
+                        images={place.image}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    <GoogleMap address={place.address} />
                   </div>
                 </div>
                 <h1 className="text-slate-900">Reservation</h1>
@@ -122,30 +126,47 @@ function PlaceDetailsPage() {
                     onChange={setDate}
                     value={date}
                     selectRange={true}
+                    minDate={new Date()}
                   />
                 </div>
                 {date.length > 0 ? (
                   <div>
-                    <p className="text-slate-50">
+                    <p className="text-slate-800">
                       <span className="bold">Start:</span>{" "}
                       {date[0].toDateString()}
                       &nbsp;|&nbsp;
                       <span className="bold">End:</span>{" "}
                       {date[1].toDateString()}
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => submitReservation(date)}
-                      className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                    >
-                      Book reservation
-                    </button>
                   </div>
                 ) : (
-                  <p className="text-slate-50">
+                  <p className="text-slate-800">
                     <span className="bold">Please select a date range</span>
                   </p>
                 )}
+                Number of guests
+                <select
+                  value={guests}
+                  onChange={(e) => setGuests(parseInt(e.target.value))}
+                  className="border rounded text-black p-2 mb-2 mr-10 ml-5"
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <button
+                  type="button"
+                  onClick={() => submitReservation(date)}
+                  className={
+                    date.length > 0
+                      ? "focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
+                      : "bg-gray-300 px-4 py-2 rounded-md cursor-not-allowed opacity-50"
+                  }
+                >
+                  Book reservation
+                </button>
               </div>
             </section>
             <Link to={`/`}>
@@ -172,6 +193,7 @@ function PlaceDetailsPage() {
                     <div className="mb-3">
                       To: {date.length === 2 ? date[1].toDateString() : ""}
                     </div>
+                    <div className="mb-3">Number of guests: {guests}</div>
                     <div className="mb-3">
                       We will reply to you shortly with your booking
                       confirmation.
