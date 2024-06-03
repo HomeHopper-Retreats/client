@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CategoryFilter from "./CategoryFilter";
 
+import ImageCarousel from "./ImageCarousel";
 
 function PlacesList() {
   const [places, setPlaces] = useState(null);
@@ -41,9 +42,9 @@ function PlacesList() {
             <Link to={`/places/${place._id}`}>
               <div className="hover:bg-white p-4 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
                 <div className="relative h-[200px] md:h-[300px] max-h-[400px] overflow-hidden rounded-3xl">
-                  <img
-                    src={place.image[0]}
-                    alt={place.name}
+                  <ImageCarousel
+                    overview={true}
+                    images={place.image}
                     className="w-full h-full object-cover"
                   />
                 </div>

@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import GoogleMap from "../components/GoogleMap";
 import { AuthContext } from "../context/auth.context";
+import ImageCarousel from "../components/ImageCarousel";
 
 function PlaceDetailsPage() {
   const [place, setPlace] = useState(null);
@@ -102,8 +103,16 @@ function PlaceDetailsPage() {
                     ) : (
                       <div>STANDARD</div>
                     )}
-                    {place.address}
-                    {place.location.coordinates}
+                    <div>{place.address}</div>
+                    <div>${place.price}</div>
+                    <div>
+                   <ImageCarousel
+                    overview={false}
+                    images={place.image}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                    
                     <GoogleMap address={place.address}/>
                   </div>
                 </div>
@@ -137,11 +146,6 @@ function PlaceDetailsPage() {
                     <span className="bold">Please select a date range</span>
                   </p>
                 )}
-                <div>
-                  {place.image.map((imgUrl, index) => (
-                    <img key={index} src={imgUrl} alt={place.name} />
-                  ))}
-                </div>
               </div>
             </section>
             <Link to={`/`}>

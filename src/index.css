@@ -95,3 +95,13 @@ button:focus-visible {
   background: #3995f1;
   color: white;
  }
+ .carousel-container {
+  height: 300px; /* Adjust as needed */
+}
+
+.carousel-image-overview {
+  height: 300px;
+}
+.carousel-image-large {
+  height: 550px;
+}
