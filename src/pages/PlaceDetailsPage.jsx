@@ -41,7 +41,7 @@ function PlaceDetailsPage() {
       .get(`${API_URL}/api/places/${placeId}`)
       .then((response) => {
         const placeDetailsFromApi = response.data;
-        console.log(response.data);
+        //console.log(response.data);
         setPlace(placeDetailsFromApi);
       })
       .catch((e) => console.log("error" + e));
@@ -49,7 +49,7 @@ function PlaceDetailsPage() {
 
   const submitReservation = (date) => {
     if (!isLoggedIn) {
-      console.log("User not logged in, opening login prompt");
+      //console.log("User not logged in, opening login prompt");
       onOpen(); // Open the modal window
       return;
     }
@@ -62,8 +62,7 @@ function PlaceDetailsPage() {
       place: placeId,
       user: user._id,
     };
-    console.log(typeof guests);
-    console.log(requestBody);
+ 
     axios
       .post(`${API_URL}/api/reservations`, requestBody)
       .then((response) => {
@@ -80,7 +79,7 @@ function PlaceDetailsPage() {
           <div className="mb-10">
             <section className="text-zinc-800 mx-auto mb-4 max-w-screen-md">
               <div className="w-full md:w-auto">
-                <div className="hover:bg-white p-4 rounded-lg shadow-lg bg-slate-100 drop-shadow-xl">
+                <div className="p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
                   <div className="text-center mt-2">
                     <h1>{place.name}</h1>
                     <hr />

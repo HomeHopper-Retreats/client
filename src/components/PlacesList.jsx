@@ -19,23 +19,19 @@ function PlacesList() {
     axios
       .get(`${API_URL}/api/places`)
       .then((response) => {
+        const placesFromApi = response.data;
 
-        const placesFromApi = response.data; 
-        
-        setFullPlacesList(placesFromApi); 
+        setFullPlacesList(placesFromApi);
         setPlaces(placesFromApi);
       })
       .catch((e) => console.log(e));
   }
-  
+
   return (
     <>
-    <section>
-    <CategoryFilter
-          setPlaces={setPlaces}
-          fullPlacesList={fullPlacesList}
-        />
-    </section>
+      <section>
+        <CategoryFilter setPlaces={setPlaces} fullPlacesList={fullPlacesList} />
+      </section>
       <section className="grid gap-8 md:grid-cols-3 ml-10 mr-10 mb-10">
         {places?.map((place) => (
           <div key={place._id} className="w-full md:w-auto max-h-[400px]">
