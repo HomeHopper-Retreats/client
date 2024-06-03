@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function PlacesList() {
   const [places, setPlaces] = useState(null);
-  //const [fullAlbumsList, setFullAlbumsList] = useState(null);
+  const [fullPlacesList, setFullPlacesList] = useState(null);
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -18,10 +18,22 @@ function PlacesList() {
       .then((response) => {
         const placesFromApi = response.data; //revert the order of the albums once a new one created appears as the first.
         setPlaces(placesFromApi);
-        //setFullAlbumsList(albumsFromApi); // Update full album list
+        setFullPlacesList(albumsFromApi); 
       })
       .catch((e) => console.log(e));
   }
+/*
+  function getCategory(query) {
+    setAlbums(fullPlacesList);
+    if (query === "All") {
+      return;
+    }
+    const searchResult = fullPlacesList.filter(
+      (place) => place.category === query
+    );
+    setPlaces(searchResult);
+  }
+  */
   
   return (
     <>
