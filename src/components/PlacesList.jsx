@@ -9,7 +9,7 @@ function PlacesList() {
   const [places, setPlaces] = useState(null);
   const [fullPlacesList, setFullPlacesList] = useState(null);
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5005";
+  const API_URL = process.env.VITE_API_URL || "http://localhost:5005";
 
   useEffect(() => {
     getAllPlaces();

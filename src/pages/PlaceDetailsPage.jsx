@@ -76,7 +76,7 @@ function PlaceDetailsPage() {
       {place && (
         
         <div className="container mx-auto p-4">
-          <h1 className="font-bold mb-3">{place.name}</h1>
+          <h1 className="text-left font-bold mb-3">{place.name}</h1>
           <div className="md:flex md:space-x-4">
             <div className="md:w-2/3 mb-4 md:mb-0 p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
               <ImageCarousel
