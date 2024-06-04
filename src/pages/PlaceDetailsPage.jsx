@@ -76,77 +76,70 @@ function PlaceDetailsPage() {
       {place && (
         
         <div className="container mx-auto p-4">
-          <h1 className="text-left font-bold mb-3">{place.name}</h1>
           <div className="md:flex md:space-x-4">
+            
             <div className="md:w-2/3 mb-4 md:mb-0 p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
-              <ImageCarousel
+            <h1 className="text-3xl font-bold mb-1 rounded-sm">{place.name}</h1>
+            
+              <div className="p-1 bg-slate-50">
+                <div className="text-center pl-2 pr-2 rounded-sm">
+                {/* <h1 className="text-2xl font-bold mb-2">{place.name}</h1> */}
+                  <div className="text-lg mb-4 font-semibold">{place.address}</div>
+                  <ImageCarousel
                 overview={false}
                 images={place.image}
                 className="w-full h-full object-cover mb-4"
               />
-              <div className="p-4 bg-slate-50">
-                <div className="text-center mt-2">
-                  <h1 className="text-2xl font-bold mb-2">{place.name}</h1>
-                  <p className="mb-4">{place.description}</p>
+                  <p className="mb-4 text-lg">{place.description}</p>
                   <hr className="my-4" />
-                  <div className="space-y-2">
-                    {place.petsAllowed ? (
+                  <div className="space-y-2 text-lg">
+                  {/* <div className=" text-left text-xl font-bold mt-2">Nightly rate ${place.price}</div> */}
+                    {place.petsAllowed && (
                       <div className="flex items-center">
                         <MdOutlinePets />
-                        <h2 className="ml-2">DOGS ALLOWED</h2>
+                        <h2 className="ml-2">Dogs Allowed</h2>
                       </div>
-                    ) : (
-                      <div>NO DOGS ALLOWED</div>
                     )}
-                    {place.handicapAccessible ? (
+                    {place.handicapAccessible && (
                       <div className="flex items-center">
                         <BiHandicap />
                         <h2 className="ml-2">Accessible</h2>
                       </div>
-                    ) : (
-                      <div>NOT ACCESSIBLE</div>
                     )}
-                    {place.kitchenAvailable ? (
+                    {place.kitchenAvailable && (
                       <div className="flex items-center">
                         <TbToolsKitchen2 />
                         <h2 className="ml-2">Kitchen</h2>
                       </div>
-                    ) : (
-                      <div>NO KITCHEN</div>
                     )}
-                    {place.elevatorAvailable ? (
+                    {place.elevatorAvailable && (
                       <div className="flex items-center">
                         <MdElevator />
                         <h2 className="ml-2">Elevator</h2>
                       </div>
-                    ) : (
-                      <div>NO ELEVATOR</div>
                     )}
-                    {place.poolAvailable ? (
+                    {place.poolAvailable && (
                       <div className="flex items-center">
                         <MdPool />
                         <h2 className="ml-2">Pool</h2>
                       </div>
-                    ) : (
-                      <div>NO POOL</div>
                     )}
-                    {place.isLuxurious ? (
+                    {place.isLuxurious && (
                       <div className="flex items-center">
                         <IoDiamondOutline />
                         <h2 className="ml-2">Luxury</h2>
                       </div>
-                    ) : (
-                      <div>STANDARD</div>
                     )}
                   </div>
-                  <div className="mt-4">{place.address}</div>
-                  <div className="text-xl font-bold mt-2">${place.price}</div>
+                  <hr className="my-4"/>
                 </div>
+                
               </div>
             </div>
             <div className="md:w-1/3">
               <div className="p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl mb-4">
-                <h1 className="text-xl font-bold mb-4">Reservation</h1>
+                <h1 className="text-xl font-bold mb-2">Reserve ${place.price} {"/"} night</h1>
+              
                 <Calendar
                   onChange={setDate}
                   value={date}
@@ -199,13 +192,15 @@ function PlaceDetailsPage() {
               <div className="p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
                 <GoogleMap address={place.address} />
               </div>
-            </div>
-          </div>
-          <Link to={`/`}>
-            <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <Link to={`/`} >
+            <button className=" mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded">
               Back
             </button>
           </Link>
+            </div>
+            
+          </div>
+          
 
           <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
