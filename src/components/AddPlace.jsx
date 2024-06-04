@@ -54,7 +54,7 @@ function AddPlace() {
     axios
       .post(`${API_URL}/api/places`, requestBody)
       .then(response => {
-        console.log(`Place created successfully`);
+        //console.log(`Place created successfully`);
         setName("")
         setImage("")
         setAddress("")

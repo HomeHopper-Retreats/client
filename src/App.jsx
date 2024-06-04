@@ -20,7 +20,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/places/:placeId" element={<PlaceDetailsPage />} />
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/reservations/user/:userId" element={<MyReservations />} />
+          <Route path="/reservations" element={<MyReservations />} />
         </Routes>
       </ChakraProvider>
     </>

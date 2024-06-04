@@ -5,7 +5,7 @@ import logo from "../assets/images/homehopper-logo.png";
 
 function Navbar() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const [menuOpen, setMenuOpen] = useState(false); 
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -14,7 +14,7 @@ function Navbar() {
     <nav className="sticky top-0 z-10 border-gray-700 bg-gray-800 dark:bg-gray-800 dark:border-gray-700 mb-10">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/">
-            <img className="w-2/6" src={logo} alt="HomeHopper Logo" />
+          <img className="w-2/6" src={logo} alt="HomeHopper Logo" />
         </Link>
         <button
           onClick={toggleMenu}
@@ -40,22 +40,25 @@ function Navbar() {
             />
           </svg>
         </button>
-        <div onMouseLeave={toggleMenu} 
+        <div
+          onMouseLeave={toggleMenu}
           className={`absolute right-0 top-full w-1/5 mt-0 ${
             menuOpen ? "" : "hidden"
           }`}
           id="navbar-hamburger"
         >
           <ul className="flex flex-col font-medium bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-          <li>
-              <Link
-                to="/reservations/user/:userId"
-                onClick={toggleMenu}
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                My Reservations
-              </Link>
-            </li>
+            {isLoggedIn && (
+              <li>
+                <Link
+                  to="/reservations"
+                  onClick={toggleMenu}
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  My Reservations
+                </Link>
+              </li>
+            )}
             <li>
               <Link
                 to="/login"
@@ -66,7 +69,7 @@ function Navbar() {
               </Link>
             </li>
 
-{/*             {isLoggedIn && (
+            {/*             {isLoggedIn && (
               <li>
                 <Link
                   to="/add-album"
@@ -79,7 +82,7 @@ function Navbar() {
               </li>
             )} */}
 
-{/*             <li>
+            {/*             <li>
               <Link
                 to="/albums"
                 onClick={toggleMenu}
@@ -98,7 +101,6 @@ function Navbar() {
                 About us
               </Link>
             </li>
-            
           </ul>
         </div>
       </div>
