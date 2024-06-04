@@ -25,14 +25,15 @@ function ReservationListAdmin() {
     <>
       <section className="grid gap-8 md:grid-cols-3 ml-10 mr-10 mb-10 mt-10">
         {reservations?.map((reservation) => (
-          <div key={reservation._id} className="w-full md:w-auto max-h-[400px]">
+          <div key={reservation._id} className="w-full md:w-auto max-h-[200px] mb-3">
             <Link to={`/reservations/${reservation._id}`}>
               <div className="hover:bg-white p-4 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
                 <div className="relative h-[200px] md:h-[300px] max-h-[400px] overflow-hidden rounded-3xl">
                 <div className="text-gray-950 text-center mt-2">
-                  {<div>{reservation.name}</div>}
-                  {<div>{reservation.date}</div>}
-                  {<div>{reservation.place}</div>}
+                {<div>{reservation.name}</div>}
+                  {<div>Dates - {reservation.date}</div>}
+                  {<div>Guest Count - {reservation.guests}</div>}
+                  {<div>Location - {reservation.place}</div>}
                 </div>
                 </div>
               </div>

@@ -47,6 +47,15 @@ function Navbar() {
           id="navbar-hamburger"
         >
           <ul className="flex flex-col font-medium bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+          <li>
+              <Link
+                to="/reservations/user/:userId"
+                onClick={toggleMenu}
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                My Reservations
+              </Link>
+            </li>
             <li>
               <Link
                 to="/login"
@@ -89,6 +98,7 @@ function Navbar() {
                 About us
               </Link>
             </li>
+            
           </ul>
         </div>
       </div>
