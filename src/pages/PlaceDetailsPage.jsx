@@ -30,7 +30,7 @@ function PlaceDetailsPage() {
   const { user } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
   const [guests, setGuests] = useState(1);
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5005";
 
   useEffect(() => {
     getPlaceDetails();
