@@ -68,9 +68,9 @@ function AddPlace() {
 
   return (
     <>
-      <section className="grid gap-5 ml-10 mr-10 mb-10">
+      <section className="grid gap-4 mb-3 p-4 rounded-lg bg-slate-50 drop-shadow-xl">
         <h1>Add New Place</h1>
-        <button className="bg-green-500" onClick={() => handleUpdate()}>{editingId ? 'Cancel' : 'Add Place'}</button>
+        <button className="bg-green-500 py-4 px-12 rounded" onClick={() => handleUpdate()}>{editingId ? 'Cancel' : 'Add Place'}</button>
         <div>
         {editingId &&(
         <form className="updateForm" onSubmit={handleSaveSubmit}>
