@@ -9,13 +9,11 @@ function PlacesList() {
   const [places, setPlaces] = useState(null);
   const [fullPlacesList, setFullPlacesList] = useState(null);
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5005";
-  let hasSearchResult = false;
   useEffect(() => {
     getAllPlaces();
   }, []);
 
   function getAllPlaces() {
-    hasSearchResult = false;
     axios
       .get(`${API_URL}/api/places`)
       .then((response) => {
@@ -36,7 +34,6 @@ function PlacesList() {
       }
     });
     if (searchResult.length > 0) {
-      hasSearchResult = true;
       setPlaces(searchResult);
     }
   }
@@ -47,7 +44,6 @@ function PlacesList() {
         <Search
           searchPlaceOrCity={searchPlaceOrCity}
           getAllPlaces={getAllPlaces}
-          hasSearchResult={hasSearchResult}
         />
       </section>
       <section>
