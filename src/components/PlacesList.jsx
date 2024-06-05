@@ -2,33 +2,54 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CategoryFilter from "./CategoryFilter";
-
 import ImageCarousel from "./ImageCarousel";
+import Search from "./Search";
 
 function PlacesList() {
   const [places, setPlaces] = useState(null);
   const [fullPlacesList, setFullPlacesList] = useState(null);
-
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5005";
-
+  let hasSearchResult = false;
   useEffect(() => {
     getAllPlaces();
   }, []);
 
   function getAllPlaces() {
+    hasSearchResult = false;
     axios
       .get(`${API_URL}/api/places`)
       .then((response) => {
         const placesFromApi = response.data;
-
         setFullPlacesList(placesFromApi);
         setPlaces(placesFromApi);
       })
       .catch((e) => console.log(e));
   }
 
+  function searchPlaceOrCity(query) {
+    const needle = query.toLowerCase();
+    const searchResult = fullPlacesList.filter((place) => {
+      const placeName = place.name.toLowerCase();
+      const placeCity = place.address.toLowerCase();
+      if (placeName.includes(needle) || placeCity.includes(needle)) {
+        return true;
+      }
+    });
+    if (searchResult.length > 0) {
+      hasSearchResult = true;
+      setPlaces(searchResult);
+    }
+  }
+
   return (
     <>
+      <section>
+        <Search
+          searchPlaceOrCity={searchPlaceOrCity}
+          getAllPlaces={getAllPlaces}
+          hasSearchResult={hasSearchResult}
+        />
+      </section>
       <section>
         <CategoryFilter setPlaces={setPlaces} fullPlacesList={fullPlacesList} />
       </section>
@@ -45,8 +66,8 @@ function PlacesList() {
                   />
                 </div>
                 <div className="text-gray-950 text-center mt-2">
-                  {<div>{place.name}</div>}
-                  {<div className="font-bold">${place.price} / Night</div>}
+                  {<div className="font-bold">{place.name}</div>}
+                  {<div>${place.price} / Night</div>}
                 </div>
               </div>
             </Link>

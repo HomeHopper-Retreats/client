@@ -11,7 +11,7 @@ function Navbar() {
     setMenuOpen(!menuOpen);
   };
   return (
-    <nav className="sticky top-0 z-10 border-gray-700 bg-gray-800 dark:bg-gray-800 dark:border-gray-700 mb-10">
+    <nav className="sticky top-0 z-10 border-gray-700 bg-gray-800 dark:bg-gray-800 dark:border-gray-700 mb-5">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/">
           <img className="w-2/6" src={logo} alt="HomeHopper Logo" />
