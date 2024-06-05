@@ -25,7 +25,7 @@ function AddPlace() {
   const handleUpdate = () => {
     setEditingId(!editingId)
 };
-
+//test
 
   const handleImageChange = (e, index) => {
     const newImages = [...image]; // Create a copy of the current images array
