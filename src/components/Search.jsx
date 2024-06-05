@@ -18,7 +18,6 @@ function Search(props) {
 
   function handleChange(e) {
     e.preventDefault();
-    // reset to all places
     if (e.target.value == "") {
       setSubmittedSearch(false);
       props.getAllPlaces();
