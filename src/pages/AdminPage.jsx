@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import AddPlace from "../components/AddPlace";
 import ReservationListAdmin from "../components/ReservationListAdmin";
 
+
 function AdminPage() {
   const [places, setPlaces] = useState(null);
   const [name, setName] = useState("");
@@ -48,9 +49,9 @@ function AdminPage() {
   };
 
   const handleImageChange = (e, index) => {
-    const newImages = [...image]; // Create a copy of the current images array
-    newImages[index] = e.target.value; // Update the value at the specified index
-    setImage(newImages); // Update the state with the new images array
+    const newImages = [...image]; 
+    newImages[index] = e.target.value; 
+    setImage(newImages); 
   };
 
   //To update state for editingId for form dropdown
@@ -96,21 +97,20 @@ function AdminPage() {
         <div className="w-1/2 mr-5 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
         <AddPlace /> 
     
-        <h1 className="pb-5 text-center">Manage Existing Places</h1>
+        <h1 className="pb-5 text-center">Manage Listings</h1>
       
       <hr className="mb-3"></hr>
-      
+      <div >
         {places?.map((place) => (
           <div
             key={place._id}
-            className=""
-            // relative w-full md:w-auto max-h-[400px] mb-7
-          >
-            <Link to={`/places/${place._id}`}>
-              <div className="hover:bg-white p-2 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
+            className="relative mb-5"
+            >
+              <div className="hover:bg-white  rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
+              <Link to={`/places/${place._id}`}>
                 <div className="h-[100px] md:h-[150px] max-h-[400px] overflow-hidden rounded-3xl">
                 <div className="text-gray-950 text-center">
-                  {<div>{place.name}</div>}
+                  {<div className="mb-1 text-lg">{place.name}</div>}
                 </div>
                   <img
                     src={place.image[0]}
@@ -118,38 +118,43 @@ function AdminPage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                
-              </div>
-            </Link>
-            <div>
-              <div className="">
-                <button onClick={() => deletePlace(place._id)}>Delete</button>
-                <button onClick={() => handleUpdate(place._id)}>
+                </Link>
+                <div className="">
+                <button className="mb-1 mr-3 mt-3 bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" onClick={() => deletePlace(place._id)}>Delete</button>
+                <button className="mb-1 mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" onClick={() => handleUpdate(place._id)}>
                   {editingId === place._id ? "Cancel" : "Update"}
                 </button>
               </div>
+            <div>
+              </div>
+            
+            
+              
               <hr className="mb-3 mt-3"></hr>
               {editingId === place._id && (
-                <div className="position: absolute z-50 text-black bg-white rounded-lg border p-4 mt-2 top-10">
-                  <form className="updateForm" onSubmit={handleSaveSubmit}>
-                    <label>Name:</label>
+                <div className="flex-col text-black rounded-lg bg-slate-50 drop-shadow-xl p-4 mt-2 top-10">
+                  <form className="updateForm max-h-[400px] overflow-auto p-2" onSubmit={handleSaveSubmit}>
+                    <div >
+                    <label>
+                    Name:
                     <input
                       type="text"
                       value={place.name}
                       onChange={(e) => setName(e.target.value)}
                       className="border rounded p-2 mb-2"
                     />
-
+                      </label>
                     <br />
-                    <label>Address:</label>
+                    <label>Address:
                     <input
                       type="text"
                       value={place.address}
                       onChange={(e) => setAddress(e.target.value)}
                       className="border rounded p-2 mb-2"
                     />
+                    </label>
                     <br />
-                    <label>Price Per Night:</label>
+                    <label>Price Per Night:
                     <input
                       type="text"
                       placeholder="$"
@@ -157,8 +162,9 @@ function AdminPage() {
                       onChange={(e) => setPrice(e.target.value)}
                       className="border rounded p-2 mb-2 text-black"
                     />
+                    </label>
                     <br />
-                    <label>Pets Allowed?</label>
+                    <label>Pets Allowed?
                     <select
                       value={place.pets}
                       onChange={(e) => setPets(e.target.value)}
@@ -167,8 +173,9 @@ function AdminPage() {
                       <option value="true">Yes</option>
                       <option value="false">No</option>
                     </select>
+                    </label>
                     <br />
-                    <label>Handicap Accessible?</label>
+                    <label>Handicap Accessible?
                     <select
                       value={place.handicap}
                       onChange={(e) => setHandicap(e.target.value)}
@@ -177,8 +184,9 @@ function AdminPage() {
                       <option value="true">Yes</option>
                       <option value="false">No</option>
                     </select>
+                    </label>
                     <br />
-                    <label>Kitchen?</label>
+                    <label>Kitchen?
                     <select
                       value={place.kitchen}
                       onChange={(e) => setKitchen(e.target.value)}
@@ -187,8 +195,9 @@ function AdminPage() {
                       <option value="true">Yes</option>
                       <option value="false">No</option>
                     </select>
+                    </label>
                     <br />
-                    <label>Elevator?</label>
+                    <label>Elevator?
                     <select
                       value={place.elevator}
                       onChange={(e) => setElevator(e.target.value)}
@@ -197,8 +206,11 @@ function AdminPage() {
                       <option value="true">Yes</option>
                       <option value="false">No</option>
                     </select>
+                    </label>
                     <br />
-                    <label>Pool?</label>
+                    </div>
+                    <div >
+                    <label>Pool?
                     <select
                       value={place.pool}
                       onChange={(e) => setPool(e.target.value)}
@@ -207,8 +219,9 @@ function AdminPage() {
                       <option value="true">Yes</option>
                       <option value="false">No</option>
                     </select>
+                    </label>
                     <br />
-                    <label>Luxury?</label>
+                    <label>Luxury?
                     <select
                       value={place.luxury}
                       onChange={(e) => setLuxury(e.target.value)}
@@ -217,41 +230,48 @@ function AdminPage() {
                       <option value="true">Yes</option>
                       <option value="false">No</option>
                     </select>
+                    </label>
                     <br />
                     {Array.from({ length: 4 }).map((_, index) => (
                       <div key={index}>
-                        <label>{`Image ${index + 1}:`}</label>
+                        <label>{`Image ${index + 1}:`}
                         <input
                           type="text"
                           value={image[index] || ""}
                           onChange={(e) => handleImageChange(e, index)}
                           className="border rounded p-2 mb-2"
                         />
+                        </label>
                       </div>
                     ))}
                     <br />
-                    <label>Description</label>
+                    <label>Description
                     <br />
                     <textarea
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       className="border rounded p-2 mb-2"
-                      rows={2}
+                      rows={3}
                       cols={25}
                     />
+                    </label>
                     <br />
+                    </div>
+                    <div className="w-full flex justify-center">
                     <button
                       type="submit"
-                      className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                      className="bg-blue-500 text-white px-8 py-2 rounded-lg"
                     >
                       Save
                     </button>
+                    </div>
                   </form>
                 </div>
               )}
             </div>
           </div>
         ))}
+        </div>
         <Link to={`/`} >
             <button className="mb-5 mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded">
               Back
@@ -259,9 +279,12 @@ function AdminPage() {
           </Link>
         </div>
       
-        <div className="w-1/2 self-start p-2 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
-        <h1>Manage Existing Reservations</h1>
+        <div className="w-1/2 p-1 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
+        
+        
         <ReservationListAdmin />
+        
+        
         </div>
         
         </section>

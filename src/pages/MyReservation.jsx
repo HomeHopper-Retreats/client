@@ -56,12 +56,13 @@ function MyReservations() {
               <div className=" p-4 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
                 <div className="relative h-[200px] md:h-[300px] max-h-[400px] overflow-hidden rounded-3xl">
                 <div className="text-gray-950 text-center mt-2">
-                  {<div className="text-xl mb-3">Name - {reservation.name}</div>}
-                  {<div>Dates - {reservation.date}</div>}
+                  {<div className="text-xl font-bold mb-3">{reservation.name}</div>}
                   {<div>Guest Count - {reservation.guests}</div>}
+                  <div>Start Date: {new Date(reservation.date[0]).toDateString()}</div>
+                <div>End Date: {new Date(reservation.date[1]).toDateString()}</div>
                   {<div>Place Reference Number - {reservation.place}</div>}
                   {<div>User Reference Number - {reservation.user}</div>}
-                  <Button colorScheme="blue" className="mt-5" onClick={() => deleteReservation(reservation._id)}>Delete</Button>
+                  <DeleteReservation reservationId={reservation._id} getMyReservations={getMyReservations} />
                 </div>
                 
                 </div>

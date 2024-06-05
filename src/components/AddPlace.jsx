@@ -54,7 +54,6 @@ function AddPlace() {
     axios
       .post(`${API_URL}/api/places`, requestBody)
       .then(response => {
-        //console.log(`Place created successfully`);
         setName("")
         setImage("")
         setAddress("")
@@ -69,7 +68,7 @@ function AddPlace() {
   return (
     <>
       <section className="grid gap-4 mb-3 p-4 rounded-lg bg-slate-50 drop-shadow-xl">
-        <h1>Add New Place</h1>
+        <h1>Create New Listing</h1>
         <button className="bg-green-500 py-4 px-12 rounded" onClick={() => handleUpdate()}>{editingId ? 'Cancel' : 'Add Place'}</button>
         <div>
         {editingId &&(
