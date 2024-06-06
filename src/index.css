@@ -116,7 +116,7 @@ button:focus-visible {
   background-color: #1F2937;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 770px) {
   #linklist {
     display: none;
   }
@@ -124,4 +124,14 @@ button:focus-visible {
   #linkmenu {
     display: block;
   }
+}
+
+#footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+.content-container {
+  min-height: calc(100vh - 34px);
 }

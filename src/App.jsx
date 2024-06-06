@@ -9,12 +9,14 @@ import MyReservations from "./pages/MyReservation";
 import { ChakraProvider } from "@chakra-ui/react";
 import IsPrivate from "./components/IsPrivate";
 import IsAdmin from "./components/IsAdmin";
+import Footer from "./components/Footer";
 import AboutUsPage from "./pages/AboutUs";
 
 function App() {
   return (
     <>
       <ChakraProvider>
+        <div className="content-container">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -25,6 +27,9 @@ function App() {
           <Route path="/admin" element={<IsAdmin><AdminPage /></IsAdmin>} />
           <Route path="/reservations" element={<IsPrivate><MyReservations /></IsPrivate>} />
         </Routes>
+        </div>
+        
+        <Footer />
       </ChakraProvider>
     </>
   );

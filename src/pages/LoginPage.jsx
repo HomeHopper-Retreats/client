@@ -48,7 +48,6 @@ function LoginPage(props) {
   }
 
   return (
-    <div className="h-screen">
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-xs">
           <form
@@ -111,7 +110,6 @@ function LoginPage(props) {
           </Link>
         </div>
       </div>
-    </div>
   );
 }
 export default LoginPage;
