@@ -9,6 +9,7 @@ import MyReservations from "./pages/MyReservation";
 import { ChakraProvider } from "@chakra-ui/react";
 import IsPrivate from "./components/IsPrivate";
 import IsAdmin from "./components/IsAdmin";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/admin" element={<IsAdmin><AdminPage /></IsAdmin>} />
           <Route path="/reservations" element={<IsPrivate><MyReservations /></IsPrivate>} />
         </Routes>
+        <Footer />
       </ChakraProvider>
     </>
   );

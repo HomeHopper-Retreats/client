@@ -116,7 +116,7 @@ button:focus-visible {
   background-color: #1F2937;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 770px) {
   #linklist {
     display: none;
   }
