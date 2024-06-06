@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 
 
-function AddPlace() {
+function AddPlace({onPlaceAdded}) {
 
   const [name, setName] = useState("");
   const [image, setImage] = useState([]);
@@ -58,6 +58,8 @@ function AddPlace() {
         setImage("")
         setAddress("")
         setDescription("")
+        setPrice("")
+        onPlaceAdded();
       })
       .catch((err) => console.log(err));
 

@@ -56,9 +56,27 @@ function AdminPage() {
 
   //To update state for editingId for form dropdown
   const handleUpdate = (id) => {
-    setEditingId((prevId) => (prevId === id ? null : id));
-    setPlaceId(id);
-    // console.log("PlaceIDHandleUpdate" + placeId)
+    const selectedPlace = places.find(place => place._id === id);
+    if (selectedPlace) {
+      setName(selectedPlace.name);
+      setImage(selectedPlace.image);
+      setAddress(selectedPlace.address);
+      setPrice(selectedPlace.price);
+      setPets(selectedPlace.pets);
+      setHandicap(selectedPlace.handicap);
+      setElevator(selectedPlace.elevator);
+      setKitchen(selectedPlace.kitchen);
+      setPool(selectedPlace.pool);
+      setLuxury(selectedPlace.luxury);
+      setDescription(selectedPlace.description);
+      setEditingId((prevId) => (prevId === id ? null : id));
+      setPlaceId(id);
+    }
+  };
+
+  const handlePlaceAdded = () => {
+    
+    getAllPlaces();
   };
 
   const handleSaveSubmit = (e) => {
@@ -95,7 +113,7 @@ function AdminPage() {
     <>
       <section className="flex ml-10 mr-10 mb-10">
         <div className="w-1/2 mr-5 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
-        <AddPlace /> 
+        <AddPlace onPlaceAdded={handlePlaceAdded}/> 
     
         <h1 className="pb-5 text-center">Manage Listings</h1>
       
