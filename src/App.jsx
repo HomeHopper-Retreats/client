@@ -11,6 +11,7 @@ import IsPrivate from "./components/IsPrivate";
 import IsAdmin from "./components/IsAdmin";
 import Footer from "./components/Footer";
 import AboutUsPage from "./pages/AboutUs";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/places/:placeId" element={<PlaceDetailsPage />} />
           <Route path="/admin" element={<IsAdmin><AdminPage /></IsAdmin>} />
           <Route path="/reservations" element={<IsPrivate><MyReservations /></IsPrivate>} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         </div>
         
