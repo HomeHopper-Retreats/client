@@ -109,6 +109,11 @@ button:focus-visible {
 
 #linkmenu {
   display: none;
+  background-color: #1F2937;
+}
+
+#linklist {
+  background-color: #1F2937;
 }
 
 @media (max-width: 550px) {
