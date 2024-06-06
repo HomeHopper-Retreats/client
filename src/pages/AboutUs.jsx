@@ -1,22 +1,30 @@
-import { Flex, Image, Text, Heading, Box } from '@chakra-ui/react';
+import { Flex, Image, Text, Heading, Box, Card, Divider, Link, useToken } from '@chakra-ui/react';
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa6";
 
 const AboutUsPage = () => {
+    const orange = useToken('colors', 'red.200');
+    const gray = useToken('colors', 'gray.50');
+    
 
-    const containerStyles = {
-        backgroundColor: '#FFB86F', // Dreamsicle orange color
-        backgroundImage: 'linear-gradient(to bottom, #FFF, #FFB86F)', // White-to-orange gradient blend
+      const contentStyles = {
+        border: `3px solid ${orange}`, // Border color matching the background
+        borderRadius: '10px', // Rounded corners
+        padding: '20px',
         
       };
 
-      const contentStyles = {
-        border: '1px solid #FFB86F', // Border color matching the background
-        borderRadius: '10px', // Rounded corners
-        padding: '20px'
-      };
+      const bg = {
+        background: `${orange}`
+      }
+
+    
   return (
-    <Flex direction="column" align="center" justify="flex-start" h="100vh" p={8} style={containerStyles}>
-      <Heading as="h1" mb={8}>Meet Our Team</Heading>
-      <Box style={contentStyles} mb={8} maxW="600px">
+    <Flex bg="gray.50" direction="column" align="center" justify="flex-start" h="100vh" p={8} >
+      
+      <Card  style={contentStyles} mb={8} maxW="600px" boxShadow="md">
+      <Heading as="h1" mb={4}>The HomeHopper Team</Heading>
+      <Divider />
       <Flex justify="center" align="flex-start" mb={4}>
         <Flex direction="column" align="center" m={4}>
           <Image
@@ -28,6 +36,16 @@ const AboutUsPage = () => {
             objectFit="cover"
             mb={4}
           />
+          <Heading as="h4" mb={0} size='md'>Christian Küchler</Heading>
+          <Heading as="h6" mb={0} size='sm'>Co-Founder</Heading>
+          <Flex pt={3}>
+            <Link pr={2} href="https://www.linkedin.com/in/christian-k-2646983a/" isExternal>
+          <FaLinkedin  fontSize="2rem" />
+          </Link>
+          <Link href="https://github.com/krilleyeah" isExternal>
+          <FaGithub fontSize="2rem" />
+          </Link>
+          </Flex>
         </Flex>
         <Flex direction="column" align="center" m={4}>
           <Image
@@ -39,10 +57,29 @@ const AboutUsPage = () => {
             objectFit="cover"
             mb={4}
           />
+          <Heading as="h4" mb={0} size='md'>Michael Giannini</Heading>
+          <Heading as="h6" mb={0} size='sm'>Co-Founder</Heading>
+          <Flex pt={3}>
+            <Link pr={2} href="https://www.linkedin.com/in/michael-giannini/" isExternal>
+          <FaLinkedin fontSize="2rem" />
+          </Link>
+          <Link href="https://github.com/Cardioday" isExternal>
+          <FaGithub fontSize="2rem" />
+          </Link>
+          </Flex>
+          
         </Flex>
+
       </Flex>
-      <Text fontSize="md" w="400px" textAlign="center">From cozy cottages nestled in lush landscapes to vibrant urban lofts pulsing with city life, our mission is to help you discover your ideal sanctuary. With a dash of whimsy and a sprinkle of magic, we can't wait to embark on this exciting journey with you, as we hop, skip, and jump toward finding your perfect place to call home.</Text>
-      </Box>
+      <Divider orientation='horizontal' mb={3} />
+      
+      <Text pl={8} fontSize="lg" w="460px" textAlign="center">Founded by Christian Küchler and Michael Giannini, HomeHopper brings the joy back into your rental home search. From cozy cottages to vibrant urban lofts, we can help you find exactly what you're looking for. Now's the time to jump into your next happy place with HomeHopper!</Text>
+      <Card p={1} mt={3}style={bg}>
+        <Text fontWeight="semibold" w="510px" textAlign="center">HomeHopper was brought to life using MERN (MongoDB, Express, React, Node.js) technologies. Styling with Tailwind CSS and Chakra UI.
+        </Text>
+      </Card>
+      </Card>
+      
     </Flex>
   );
 };
