@@ -34,7 +34,7 @@ function MyReservations() {
 
   return (
     <>
-      <div className="h-screen flex flex-col">
+      <div className="flex flex-col">
         <section>
           <h2 className="text-3xl font-bold">Confirmed Reservations</h2>
         </section>
