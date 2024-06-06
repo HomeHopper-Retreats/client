@@ -135,11 +135,9 @@ function PlaceDetailsPage() {
                   </div>
                   <hr className="my-4" />
                 </div>
-{/*                 <div className="text-lg mb-4 font-semibold">Reviews</div>
-
-
-                
-              </div> */}
+                <div className="text-lg mb-4 font-semibold"></div>
+                {/* reviews */}
+              </div>
             </div>
             <div className="md:w-1/3">
               <div className="p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl mb-4">
