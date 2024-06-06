@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
@@ -15,6 +15,14 @@ function LoginPage(props) {
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const { logOutUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    // logout user if he is logged in
+    if(isLoggedIn) {
+      logout();
+    }
+  }, []);
+
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -40,26 +48,16 @@ function LoginPage(props) {
   }
 
   return (
-    <div className="LoginPage">
-      {/*       <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-        <button type="submit">Login</button>
-      </form> */}
-
+    <div className="h-screen">
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-xs">
           <form
             onSubmit={handleLoginSubmit}
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          ><label className="block text-gray-700 text-md font-bold mb-2">Login</label>
+          >
+            <label className="block text-gray-700 text-md font-bold mb-2">
+              Login
+            </label>
             <div className="mb-4">
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -81,7 +79,7 @@ function LoginPage(props) {
               />
               {errorMessage && <p className="text-red-500">{errorMessage}</p>}
             </div>
-            
+
             <div className="flex items-center justify-between">
               {!isLoggedIn && (
                 <button

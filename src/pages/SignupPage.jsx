@@ -6,7 +6,7 @@ function SignupPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");  
+  const [lastName, setLastName] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
   const navigate = useNavigate();
   const handleEmail = (e) => setEmail(e.target.value);
@@ -33,37 +33,78 @@ function SignupPage(props) {
       });
   };
   return (
-    <div className="SignupPage">
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-        <label>Firstname:</label>
-        <input
-          type="text"
-          name="firstname"
-          value={firstName}
-          onChange={handleFirstName}
-        />
-        <label>Lastname:</label>
-        <input
-          type="text"
-          name="lastname"
-          value={lastName}
-          onChange={handleLastName}
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
+    <div className="h-screen">
+      <div className="flex justify-center mt-10">
+        <div className="w-full max-w-xs">
+          <form
+            onSubmit={handleSignupSubmit}
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          >
+            <label className="block text-gray-700 text-md font-bold mb-2">
+              Sign Up
+            </label>
+            <div className="mb-4">
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={handleEmail}
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlePassword}
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="firstname"
+                type="text"
+                placeholder="Firstname"
+                value={firstName}
+                onChange={handleFirstName}
+              />
+            </div>
+            <div className="mb-6">
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="lastname"
+                type="text"
+                placeholder="Lastname"
+                value={lastName}
+                onChange={handleLastName}
+              />
+              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            </div>
+
+            <div className="flex items-center justify-between">
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <p>Already have an account?</p>
+      <Link to={"/login"}>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Login
+        </button>
+      </Link>
     </div>
   );
 }
