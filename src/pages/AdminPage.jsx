@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddPlace from "../components/AddPlace";
 import ReservationListAdmin from "../components/ReservationListAdmin";
+import { Button } from "@chakra-ui/react";
 
 
 function AdminPage() {
@@ -32,7 +33,7 @@ function AdminPage() {
     axios
       .get(`${API_URL}/api/places`)
       .then((response) => {
-        const placesFromApi = response.data;
+        const placesFromApi = response.data.reverse();
         setPlaces(placesFromApi);
       })
       .catch((e) => console.log(e));
@@ -115,7 +116,7 @@ function AdminPage() {
         <div className="w-1/2 mr-5 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
         <AddPlace onPlaceAdded={handlePlaceAdded}/> 
     
-        <h1 className="pb-5 text-center">Manage Listings</h1>
+        <h1 className="mt-5 pb-5 text-center text-4xl font-semibold">Manage Listings</h1>
       
       <hr className="mb-3"></hr>
       <div >
@@ -138,10 +139,13 @@ function AdminPage() {
                 </div>
                 </Link>
                 <div className="">
-                <button className="mb-1 mr-3 mt-3 bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" onClick={() => deletePlace(place._id)}>Delete</button>
-                <button className="mb-1 mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" onClick={() => handleUpdate(place._id)}>
-                  {editingId === place._id ? "Cancel" : "Update"}
-                </button>
+                <Button colorScheme="red" mr={3} mt={3} onClick={() => deletePlace(place._id)}>
+                        Delete
+                      </Button>
+                      <Button colorScheme="blue" mr={3} mt={3} onClick={() => handleUpdate(place._id)}>
+                        Update
+                      </Button>
+              
               </div>
             <div>
               </div>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Button } from "@chakra-ui/react";
 
 function EditReservation({ reservationId, getAllReservations }) {
     const [reservations, setReservations] = useState(null);
@@ -81,9 +82,10 @@ function EditReservation({ reservationId, getAllReservations }) {
         <>
             
             <div>
-                <button className="relative mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" onClick={() => handleUpdate(reservationId)}>
-                    {editingId === reservationId ? "Cancel" : "Update"}
-                </button>
+            <Button className="mt-3 relative text-white "colorScheme="blue" mr={3} onClick={() => handleUpdate(reservationId)}>
+            {editingId === reservationId ? "Cancel" : "Update"}
+                      </Button>
+               
             </div>
 
             {editingId === reservationId && (
