@@ -27,9 +27,10 @@ function DeleteReservation({ reservationId, getAllReservations, getMyReservation
     return (
       <>
 
-<button className="mt-3 bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" onClick={() => 
+<Button className="mt-3 relative text-white "colorScheme="red" mr={0} onClick={() => 
           getMyReservations ? handleDeleteAdmin(reservationId) : handleDelete(reservationId) }>
-          Delete</button>
+            Delete
+                      </Button>
       </>
     );
   }

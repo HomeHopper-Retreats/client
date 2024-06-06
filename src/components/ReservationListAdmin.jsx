@@ -27,7 +27,7 @@ function ReservationListAdmin() {
   return (
     <>
       <section className="h-auto ml-10 mr-10 mb-10 mt-5 shadow-sm">
-        <h1>Manage Existing Reservations</h1>
+        <h1 className="text-4xl font-semibold">Manage Existing Reservations</h1>
         <hr className="mb-1 mt-3"></hr>
         {reservations?.map((reservation) => (
           

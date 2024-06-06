@@ -1,5 +1,7 @@
 import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
+import { Button } from "@chakra-ui/react";
 
 function EditReservation({ reservationId, getAllReservations }) {
     const [reservations, setReservations] = useState(null);
@@ -15,18 +17,44 @@ function EditReservation({ reservationId, getAllReservations }) {
     const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5005";
 
 
+
+    useEffect(() => {
+        // Fetch the reservations data from the API and then set the state
+        axios
+          .get(`${API_URL}/api/reservations`)
+          .then((response) => {
+            setReservations(response.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching reservations:", error);
+          });
+      }, []);
+
     const handleDateChange = (index, value) => {
         const newDates = [...date]; // Create a copy of the dates array
         newDates[index] = value; // Update the value at the specified index
         setDate(newDates); // Update the dates state with the new array
     };
 
+
     //To update state for editingId for form dropdown
     const handleUpdate = (id) => {
-        setEditingId((prevId) => (prevId === id ? null : id));
-        setPlaceId(id);
-
-    };
+        
+        const selectedReservation = reservations.find(reservation => reservation._id === id);
+        const formattedDates = selectedReservation.date.map(d => {
+            const dateObject = new Date(d);
+            return dateObject.toISOString().split('T')[0];
+          });
+        if (selectedReservation) {
+          setName(selectedReservation.name);
+          setDate(formattedDates);
+          setGuests(selectedReservation.guests);
+          setPlace(selectedReservation.place);
+          setUser(selectedReservation.user);        
+          setEditingId((prevId) => (prevId === id ? null : id));
+          setPlaceId(id);
+        }
+      };
 
     const handleSaveSubmit = (e) => {
         e.preventDefault();
@@ -54,9 +82,10 @@ function EditReservation({ reservationId, getAllReservations }) {
         <>
             
             <div>
-                <button className="relative mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" onClick={() => handleUpdate(reservationId)}>
-                    {editingId === reservationId ? "Cancel" : "Update"}
-                </button>
+            <Button className="mt-3 relative text-white "colorScheme="blue" mr={3} onClick={() => handleUpdate(reservationId)}>
+            {editingId === reservationId ? "Cancel" : "Update"}
+                      </Button>
+               
             </div>
 
             {editingId === reservationId && (

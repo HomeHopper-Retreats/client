@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Button } from "@chakra-ui/react";
 
 
 
-function AddPlace() {
+function AddPlace({onPlaceAdded}) {
 
   const [name, setName] = useState("");
   const [image, setImage] = useState([]);
@@ -37,6 +38,8 @@ function AddPlace() {
   const handleSaveSubmit = (e) => {
     e.preventDefault();
 
+    
+
 
     const requestBody = {
       name: name,
@@ -58,6 +61,8 @@ function AddPlace() {
         setImage("")
         setAddress("")
         setDescription("")
+        setPrice("")
+        onPlaceAdded(response.data);
       })
       .catch((err) => console.log(err));
 
@@ -68,8 +73,10 @@ function AddPlace() {
   return (
     <>
       <section className="grid gap-4 mb-3 p-4 rounded-lg bg-slate-50 drop-shadow-xl">
-        <h1>Create New Listing</h1>
-        <button className="bg-green-500 py-4 px-12 rounded" onClick={() => handleUpdate()}>{editingId ? 'Cancel' : 'Add Place'}</button>
+        <h1 className="text-4xl font-semibold">Create New Listing</h1>
+        <Button className="mt-3 relative text-white "colorScheme="green" mr={0} onClick={() => handleUpdate()}>
+        {editingId ? 'Cancel' : 'Add Place'}
+                      </Button>
         <div>
         {editingId &&(
         <form className="updateForm" onSubmit={handleSaveSubmit}>
