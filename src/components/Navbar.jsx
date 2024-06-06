@@ -6,10 +6,12 @@ import logo from "../assets/images/homehopper-logo.png";
 function Navbar() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isAdmin } = useContext(AuthContext);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
   return (
     <nav className="sticky top-0 z-10 border-gray-700 bg-gray-800 dark:bg-gray-800 dark:border-gray-700 mb-5">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
@@ -29,7 +31,7 @@ function Navbar() {
                 </Link>
               </li>
             )}
-            {isLoggedIn && (
+            {(isLoggedIn && isAdmin()) && (
               <li>
                 <Link
                   to="/admin"
@@ -106,7 +108,7 @@ function Navbar() {
                   </Link>
                 </li>
               )}
-              {isLoggedIn && (
+              {(isLoggedIn && isAdmin()) &&  (
                 <li>
                   <Link
                     to="/admin"

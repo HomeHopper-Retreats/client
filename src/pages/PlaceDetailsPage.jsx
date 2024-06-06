@@ -74,26 +74,28 @@ function PlaceDetailsPage() {
   return (
     <>
       {place && (
-        
         <div className="container mx-auto p-4">
           <div className="md:flex md:space-x-4">
-            
             <div className="md:w-2/3 mb-4 md:mb-0 p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
-            <h1 className="text-3xl font-bold mb-1 rounded-sm">{place.name}</h1>
-            
+              <h1 className="text-3xl font-bold mb-1 rounded-sm">
+                {place.name}
+              </h1>
+
               <div className="p-1 bg-slate-50">
                 <div className="text-center pl-2 pr-2 rounded-sm">
-                {/* <h1 className="text-2xl font-bold mb-2">{place.name}</h1> */}
-                  <div className="text-lg mb-4 font-semibold">{place.address}</div>
+                  {/* <h1 className="text-2xl font-bold mb-2">{place.name}</h1> */}
+                  <div className="text-lg mb-4 font-semibold">
+                    {place.address}
+                  </div>
                   <ImageCarousel
-                overview={false}
-                images={place.image}
-                className="w-full h-full object-cover mb-4"
-              />
+                    overview={false}
+                    images={place.image}
+                    className="w-full h-full object-cover mb-4"
+                  />
                   <p className="mb-4 text-lg">{place.description}</p>
                   <hr className="my-4" />
                   <div className="space-y-2 text-lg">
-                  {/* <div className=" text-left text-xl font-bold mt-2">Nightly rate ${place.price}</div> */}
+                    {/* <div className=" text-left text-xl font-bold mt-2">Nightly rate ${place.price}</div> */}
                     {place.petsAllowed && (
                       <div className="flex items-center">
                         <MdOutlinePets />
@@ -131,15 +133,18 @@ function PlaceDetailsPage() {
                       </div>
                     )}
                   </div>
-                  <hr className="my-4"/>
+                  <hr className="my-4" />
                 </div>
-                
+                <div className="text-lg mb-4 font-semibold"></div>
+                {/* reviews */}
               </div>
             </div>
             <div className="md:w-1/3">
               <div className="p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl mb-4">
-                <h1 className="text-xl font-bold mb-2">Reserve ${place.price} {"/"} night</h1>
-              
+                <h1 className="text-xl font-bold mb-2">
+                  Reserve ${place.price} {"/"} night
+                </h1>
+
                 <Calendar
                   onChange={setDate}
                   value={date}
@@ -192,15 +197,13 @@ function PlaceDetailsPage() {
               <div className="p-4 rounded-lg shadow-lg bg-slate-50 drop-shadow-xl">
                 <GoogleMap address={place.address} />
               </div>
-              <Link to={`/`} >
-            <button className=" mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded">
-              Back
-            </button>
-          </Link>
+              <Link to={`/`}>
+                <button className=" mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded">
+                  Back
+                </button>
+              </Link>
             </div>
-            
           </div>
-          
 
           <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
@@ -214,7 +217,6 @@ function PlaceDetailsPage() {
               <ModalBody>
                 {isLoggedIn ? (
                   <>
-                    
                     <div>
                       From: {date.length === 2 ? date[0].toDateString() : ""}
                     </div>
