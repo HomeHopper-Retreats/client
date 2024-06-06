@@ -4,8 +4,7 @@ import { FaGithub } from "react-icons/fa6";
 
 const AboutUsPage = () => {
     const orange = useToken('colors', 'red.200');
-    const gray = useToken('colors', 'gray.50');
-    
+    const gray = useToken('colors', 'gray.50');  
 
       const contentStyles = {
         border: `3px solid ${orange}`, // Border color matching the background
@@ -20,9 +19,9 @@ const AboutUsPage = () => {
 
     
   return (
-    <Flex bg="gray.50" direction="column" align="center" justify="flex-start" h="100vh" p={8} >
+    <Flex bg="gray.50" direction="column" align="center" justify="flex-start" h="100vh"  >
       
-      <Card  style={contentStyles} mb={8} maxW="600px" boxShadow="md">
+      <Card  style={contentStyles} mb={8} maxW="700px" boxShadow="md">
       <Heading as="h1" mb={4}>The HomeHopper Team</Heading>
       <Divider />
       <Flex justify="center" align="flex-start" mb={4}>
@@ -73,9 +72,9 @@ const AboutUsPage = () => {
       </Flex>
       <Divider orientation='horizontal' mb={3} />
       
-      <Text pl={8} fontSize="lg" w="460px" textAlign="center">Founded by Christian Küchler and Michael Giannini, HomeHopper brings the joy back into your rental home search. From cozy cottages to vibrant urban lofts, we can help you find exactly what you're looking for. Now's the time to jump into your next happy place with HomeHopper!</Text>
+      <Text fontSize="lg" w="560px" textAlign="center">Founded by Christian Küchler and Michael Giannini, HomeHopper brings the joy back into your rental home search. From cozy cottages to vibrant urban lofts, we can help you find exactly what you're looking for. Now's the time to jump into your next happy place with HomeHopper!</Text>
       <Card p={1} mt={3}style={bg}>
-        <Text fontWeight="semibold" w="510px" textAlign="center">HomeHopper was brought to life using MERN (MongoDB, Express, React, Node.js) technologies. Styling with Tailwind CSS and Chakra UI.
+        <Text fontWeight="semibold" w="560px" textAlign="center">HomeHopper was brought to life using MERN (MongoDB, Express, React, Node.js) technologies. Styling with Tailwind CSS and Chakra UI.
         </Text>
       </Card>
       </Card>
