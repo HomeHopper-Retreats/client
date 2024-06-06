@@ -35,41 +35,29 @@ function MyReservations() {
     return <div>Loading...</div>; // Add a loading state while waiting for the data
   }
 
-  const deleteReservation = (reservationId) => {
-    axios
-      .delete(`${API_URL}/api/reservations/${reservationId}`)
-      .then((response) => {
-        // console.log(`Place with id ${placeId} deleted successfully`);
-        getMyReservations();
-      })
-      .catch((err) => console.log(err));
-  }
-  
   return (
     <>
     <section>
-        <h2 className="text-3xl">Confirmed Reservations</h2>
+        <h2 className="text-3xl font-bold">Confirmed Reservations</h2>
     </section>
       <section className="grid gap-8 md:grid-cols-3 ml-10 mr-10 mb-10 mt-10">
         {reservations?.map((reservation) => (
-          <div key={reservation._id} className="w-full md:w-auto max-h-[400px] ml-5 mb-10">
+          <div key={reservation._id} >
               <div className=" p-4 rounded-3xl shadow-lg bg-slate-100 drop-shadow-xl h-full">
-                <div className="relative h-[200px] md:h-[300px] max-h-[400px] overflow-hidden rounded-3xl">
+                
                 <div className="text-gray-950 text-center mt-2">
-                  {<div className="text-xl font-bold mb-3">{reservation.name}</div>}
+                  {<div className="text-xl font-semibold mb-3">{reservation.name}</div>}
                   {<div>Guest Count - {reservation.guests}</div>}
                   <div>Start Date: {new Date(reservation.date[0]).toDateString()}</div>
                 <div>End Date: {new Date(reservation.date[1]).toDateString()}</div>
-                  {<div>Place Reference Number - {reservation.place}</div>}
-                  {<div>User Reference Number - {reservation.user}</div>}
-                  <DeleteReservation reservationId={reservation._id} getMyReservations={getMyReservations} />
+                                  <DeleteReservation reservationId={reservation._id} getMyReservations={getMyReservations} />
                 </div>
                 
                 </div>
               </div>
               
               
-          </div>
+         
         ))}
         
       </section>

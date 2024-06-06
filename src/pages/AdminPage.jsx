@@ -139,7 +139,7 @@ function AdminPage() {
                     Name:
                     <input
                       type="text"
-                      value={place.name}
+                      value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="border rounded p-2 mb-2"
                     />
@@ -148,7 +148,7 @@ function AdminPage() {
                     <label>Address:
                     <input
                       type="text"
-                      value={place.address}
+                      value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       className="border rounded p-2 mb-2"
                     />
@@ -158,7 +158,7 @@ function AdminPage() {
                     <input
                       type="text"
                       placeholder="$"
-                      value={place.price}
+                      value={price}
                       onChange={(e) => setPrice(e.target.value)}
                       className="border rounded p-2 mb-2 text-black"
                     />
@@ -166,7 +166,7 @@ function AdminPage() {
                     <br />
                     <label>Pets Allowed?
                     <select
-                      value={place.pets}
+                      value={pets}
                       onChange={(e) => setPets(e.target.value)}
                       className="border rounded text-black p-2 mb-2"
                     >
@@ -177,7 +177,7 @@ function AdminPage() {
                     <br />
                     <label>Handicap Accessible?
                     <select
-                      value={place.handicap}
+                      value={handicap}
                       onChange={(e) => setHandicap(e.target.value)}
                       className="border rounded text-black p-2 mb-2"
                     >
@@ -188,7 +188,7 @@ function AdminPage() {
                     <br />
                     <label>Kitchen?
                     <select
-                      value={place.kitchen}
+                      value={kitchen}
                       onChange={(e) => setKitchen(e.target.value)}
                       className="border rounded text-black p-2 mb-2"
                     >
@@ -199,7 +199,7 @@ function AdminPage() {
                     <br />
                     <label>Elevator?
                     <select
-                      value={place.elevator}
+                      value={elevator}
                       onChange={(e) => setElevator(e.target.value)}
                       className="border rounded text-black p-2 mb-2"
                     >
@@ -212,7 +212,7 @@ function AdminPage() {
                     <div >
                     <label>Pool?
                     <select
-                      value={place.pool}
+                      value={pool}
                       onChange={(e) => setPool(e.target.value)}
                       className="border rounded text-black p-2 mb-2"
                     >
@@ -223,7 +223,7 @@ function AdminPage() {
                     <br />
                     <label>Luxury?
                     <select
-                      value={place.luxury}
+                      value={luxury}
                       onChange={(e) => setLuxury(e.target.value)}
                       className="border rounded text-black p-2 mb-2"
                     >

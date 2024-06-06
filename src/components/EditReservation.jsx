@@ -7,7 +7,7 @@ function EditReservation({ reservationId, getAllReservations }) {
     const [date, setDate] = useState(["", ""]);
     const [guests, setGuests] = useState("");
     const [place, setPlace] = useState("");
-    const [user, setUser] = useState(false);
+    const [user, setUser] = useState("");
     const [placeId, setPlaceId] = useState("");
 
     const [editingId, setEditingId] = useState(false);
@@ -68,6 +68,7 @@ function EditReservation({ reservationId, getAllReservations }) {
                                 Name:
                                 <input
                                     type="text"
+                                    placeholder="i.e Paradise hotel"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className="border rounded p-2 mb-2"
