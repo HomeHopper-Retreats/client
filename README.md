@@ -2,16 +2,16 @@
 # HomeHopper Frontend
 
 - Description
+  - This is the frontend of the HomeHopper React application
   - HomeHopper is a rental booking site that allows users to browse through available listings and create/delete reservations.
   - Developed using JS/React, Tailwind CSS, and Chakra UI
-
-    - This is the frontend of the HomeHopper React application
-    - The backend repository is here [homehopper backend](https://github.com/HomeHopper-Retreats/server)
+  - The backend repository is here [homehopper backend](https://github.com/HomeHopper-Retreats/server)
 
 
-- Install and run the project
+- Install the project
+
   - git clone
-  - install dependencies / components  
+  - install dependencies / components:
     - `npm install`
     - `npm install react-router-dom`
     - `npm install axios`
