@@ -23,8 +23,8 @@
   - run the frontend with `npm run dev`
 
 - Users
-  - Standard users can view retreats and book reservations and delete reservations
-  - Admin users can create and edit retreats, book, edit and delete reservations
+  - Standard users can view retreats and book and cancel reservations
+  - Admin users can create and edit retreats and edit and delete reservations
 
 - Demo
   - Link to the final project: [homehopper.netlify.app](https://homehopper.netlify.app)
