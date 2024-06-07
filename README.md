@@ -20,6 +20,10 @@
     - `VITE_GOOGLE_API_KEY=AIzaSyBapC5bIrPygdzF8X4-pIbrSgfmpFSa3B8`
   - run the frontend with `npm run dev`
 
+- Users
+  - Standard users can view retreats and book reservations and delete reservations
+  - Admin users can create and edit retreats, book, edit and delete reservations
+
 - Demo
   - Link to the final project: [homehopper.netlify.app](https://homehopper.netlify.app)
   - You can also provide the link to adaptable/fly.io, so that anyone can test the API.
